@@ -1,0 +1,46 @@
+using System.Collections;
+using UnityEngine;
+
+public class FilterBadOrGood : MonoBehaviour
+{
+    public GameObject[] good;
+    public GameObject[] bad;
+
+    public void Start()
+    {
+        StartCoroutine(badFunc());
+        StartCoroutine(goodFunc());
+    }
+
+    
+    public IEnumerator badFunc()
+    {
+
+        GameObject[] badObjects = GameObject.FindGameObjectsWithTag("bad");
+
+        foreach (GameObject badObject in badObjects)
+        {
+            for (int i = 0; i <= transform.childCount; i++)
+            {
+                bad[i] = badObjects[i];
+
+            }
+            yield return badObjects;
+        }
+    }
+
+    public IEnumerator goodFunc()
+    {
+        GameObject[] goodObjects = GameObject.FindGameObjectsWithTag("good");
+
+        foreach (GameObject goodObject in goodObjects)
+        {
+            for (int i = 0; i <= transform.childCount; i++)
+            {
+                good[i] = goodObjects[i];
+            }
+             yield return goodObjects;
+        }
+    }
+}
+ 
